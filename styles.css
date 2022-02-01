@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* OUTLINE BOX FOR TABBING  */
+::focus {
+    outline: 2px solid black;
+    outline-offset: 4px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+#add_task {
+    width: 100%;
+    height: 64px;
+    margin: 0px auto 8px;
+}
+
+.modal-wrapper {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 16px 32px;
+    border: 1px solid #888;
+    max-width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-footer p {
+    margin-top: auto;
+    font-size: 0.825rem;
+}
+
+textarea {
+    width: 100%;
+    margin: auto;
+    display: block;
+    resize: none;
+}
+
+#flex_table {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#flex_table .task {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 8px auto;
+    background: #f1f1f1;
+}
+
+@media (min-width: 550px) {
+}

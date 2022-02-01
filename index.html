@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Simple ToDo App" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" href="./styles.css">
+
+	<title>Simple To Do App</title>
+</head>
+
+<body>
+
+	<button id="add_task">+</button>
+
+	<div id="flex_table"></div>
+
+
+
+	<div id="task_modal" class="modal-wrapper">
+
+		<div class="modal-content">
+			<div class="modal-body">
+				<textarea id="task_name" placeholder="Please add your task name here..." rows="4"></textarea>
+			</div>
+
+			<div class="modal-footer">
+				<p>When you're ready, submit your task below.</p>
+				<button id="submit_modal">Submit</button>
+			</div>
+
+		</div>
+	</div>
+	<script src="./main.js"></script>
+</body>
+
+</html>

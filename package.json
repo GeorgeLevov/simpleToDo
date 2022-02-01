@@ -1,0 +1,21 @@
+{
+    "name": "simpletodo",
+    "version": "1.0.0",
+    "description": "Simple ToDo App",
+    "main": "main.js",
+    "scripts": {
+        "start": "snowpack dev",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GeorgeLevov/simpleToDo.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/GeorgeLevov/simpleToDo/issues"
+    },
+    "homepage": "https://github.com/GeorgeLevov/simpleToDo#readme"
+}
