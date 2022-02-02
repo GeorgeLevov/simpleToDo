@@ -1,18 +1,16 @@
-# simpleToDo
+# simpleToDo - To-Do list web-app. 
 
-A simple To-Do web-app list.
-Simple project Level 1 difficulty, the goal is to have a working to-do list.
+> This project's goal is to have under 200 lines of JS in total and achieve the functionality of a simple ToDo app.
 
-What it should be doing.
-.
-.
-to add
-.
-.
-What it shouldn't be doing.
+Functionality:
+1. Add (task/item) to ToDo list:
+  - Create a new (task/item),
+  - Add a name of the new (task/item)
+2. Mark created (tasks/items) as complete or in-progress(default),
+3. Sort (tasks/items) by status: (completed) (in-progress)
+4. Remove (task/item) from ToDo list.
+5. Export ToDo list:
+  - Export to Clipboard,
+  - Export to Image
 
-.
-.
-to add
-.
-.
+---
