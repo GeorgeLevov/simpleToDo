@@ -13,14 +13,47 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
     background-color: hsl(0deg 0% 80%);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 10vh;
+    max-height: 10vh;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-bottom: 1px dashed black;
+}
+
+h1 {
+    margin: 0 auto;
+    display: inline-block;
+    flex: 0 0 25%;
+}
+
+.additional-resources {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 75%;
+}
+
+#task_wrapper {
+    width: 100%;
+    height: 80vh;
+    max-height: 80vh;
+    padding-top: 16px;
+    overflow: auto;
 }
 
 #add_task {
     width: 100%;
     height: 10vh;
-    margin: 0px;
+    max-height: 10vh;
+    margin: 0 auto;
     font-size: 2.5rem;
 }
 
@@ -63,48 +96,39 @@ textarea {
 #flex_table {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    height: 80vh;
-    max-height: 80vh;
-    padding: 16px;
     overflow: auto;
 }
 
 #flex_table .task {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     gap: 8px;
-
     width: 100%;
     background: hsl(0, 0%, 100%);
     font-size: 1.125rem;
     text-align: left;
-    padding: 8px 24px;
-    margin: 4px auto;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 4px;
+    margin-left: auto;
+    margin-right: auto;
     word-break: break-word;
+    user-select: none;
+    cursor: pointer;
 }
 
 #flex_table .task .task-checkmark {
-    text-align: center;
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
     color: hsl(0, 0%, 100%);
 
-    width: 40px;
-    height: 40px;
     padding: 0px 10px;
-    border: 1px solid black;
-    border-radius: 50%;
     user-select: none;
 }
 
-footer {
-    text-align: center;
-    padding: 4px;
-    background-color: hsl(15, 65%, 65%);
-    color: white;
-    height: 10vh;
-    max-height: 10vh;
+#flex_table .task .task-text {
+    padding: 8px 24px;
 }
 
 @media (min-width: 550px) {

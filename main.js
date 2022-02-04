@@ -22,22 +22,24 @@ const submitTaskName = () => {
 };
 
 const generateTask = (text) => {
+    console.log(text);
     // add wrapping element
     const parent = document.createElement("div");
     parent.classList.add("task", "in-progress");
 
+    // add checkbox element
+    const checkNode = document.createElement("div");
+    checkNode.innerHTML = "&#10003;";
+    checkNode.classList.add("task-checkmark");
+    parent.addEventListener("click", () => completeTask(checkNode, parent));
+    parent.appendChild(checkNode);
+
     // add text element
     const textNode = document.createElement("div");
     textNode.classList.add("task-text");
-    textNode.innerHTML += text;
+    textNode.textContent += text.toString();
     parent.appendChild(textNode);
 
-    // add checkbox element
-    const checkNode = document.createElement("div");
-    checkNode.innerHTML += "&#10003;";
-    checkNode.classList.add("task-checkmark");
-    checkNode.addEventListener("click", () => completeTask(checkNode, parent));
-    parent.appendChild(checkNode);
     return parent;
 };
 
