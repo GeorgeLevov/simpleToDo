@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Simple ToDo App",
     "main": "main.js",
+    "type": "module",
     "scripts": {
         "start": "snowpack dev",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,5 +18,11 @@
     "bugs": {
         "url": "https://github.com/GeorgeLevov/simpleToDo/issues"
     },
-    "homepage": "https://github.com/GeorgeLevov/simpleToDo#readme"
+    "homepage": "https://github.com/GeorgeLevov/simpleToDo#readme",
+    "dependencies": {
+        "firebase": "^9.6.6"
+    },
+    "devDependencies": {
+        "snowpack": "^3.8.8"
+    }
 }
