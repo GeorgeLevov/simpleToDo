@@ -1,23 +1,23 @@
-# simpleToDo - To-Do list web-app.
+# UNDER 200 Challange #1 - To-Do list web-app.
 
-> This simple project's goal is to have the functionality of a simple ToDo app (mentioned below).
+> _Ahh... todo apps._ There are millions and billions of them out there.<br/>
+> No front-end project screams "hello world" like a simple responsive to do list app.
 
-Functionality:
-
-1. Add (task/item) to ToDo list:
-
--   Create a new (task/item),
--   Add a name of the new (task/item)
-
-2. Mark created (tasks/items) as complete or in-progress(default),
-3. Sort (tasks/items) by status: (completed) (in-progress)
-4. Remove (task/item) from ToDo list.
-5. Export ToDo list:
-
--   Export to Clipboard,
--   Export to Image
+The goal of this specific todo app is to have all functionality mentioned below in under 200 lines of plain Javascript.
 
 ---
 
-> A secondary goal is to have under 200 lines of JS in total.<br/>
-> Another secondary goal is for this project to not use any libraries or external code.
+### Functionality:
+
+1. Add a task to the todo list:
+
+-   Create a new task,
+-   Add a name and description(steps) to the new task
+
+2. Mark created tasks as complete or in-progress
+3. Sort tasks by completion status: in-progress; completed;
+4. Remove a task from the todo list.
+5. Copy/Share ToDo list:
+
+-   Copy to Clipboard
+-   Copy an Image of the list
