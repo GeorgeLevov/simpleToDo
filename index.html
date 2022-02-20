@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Simple ToDo App" />
 
-	<link rel="stylesheet" href="./res/normalize.css">
-	<link rel="stylesheet" href="./res/styles.css">
+	<link rel="stylesheet" href="./res/styles/normalize.css">
+	<link rel="stylesheet" href="./res/styles/main.css">
 
 	<title>Simple To Do App</title>
 </head>
@@ -29,22 +29,23 @@
 	</header>
 
 
-
-
 	<div id="task_modal" class="modal-wrapper">
+		<div class="modal-header">
+			<h2>What are your plans for today?</h2>
+		</div>
 
 		<div class="modal-content">
-			<div class="modal-body">
-				<textarea id="task_name" placeholder="Please add your task name here..." rows="4"></textarea>
-			</div>
+			<input type="text" id="task_name" placeholder="Task name ..."></input>
+			<div id="date_today"></div>
 
 			<div class="modal-footer">
 				<p>When you're ready, please click on the "Submit" button below.</p>
 				<button id="submit_modal">Submit</button>
 			</div>
-
 		</div>
+
 	</div>
+
 
 	<div id="task_wrapper">
 		<div id="flex_table"></div>
