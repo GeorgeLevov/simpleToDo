@@ -4,7 +4,7 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    // Your Firestore Details here
+    // YOUR FIRESTORE DETAILS HERE
 };
 
 // Initialize Firebase
