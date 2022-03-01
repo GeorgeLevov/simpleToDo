@@ -2,9 +2,10 @@ import { DB_AddTask, DB_updateTaskStatus } from "./firestore_functions";
 import { taskDBTemplate, taskUITemplate } from "./templates";
 
 //
-// CONSTRUCTING UI OBJECT
+//
 const addTask = document.getElementById("add_task");
 const submitModal = document.getElementById("submit_modal");
+const exitModal = document.getElementById("exit_modal");
 const modal = document.getElementById("task_modal");
 const taskName = document.getElementById("task_name");
 const tasks = document.getElementById("flex_table");
@@ -14,6 +15,7 @@ const dateToday = document.getElementById("date_today");
 export const UIObject = {
     btnAddTask: addTask,
     btnSubmitTask: submitModal,
+    btnCloseModal: exitModal,
     addTaskModal: modal,
     taskNameInput: taskName,
     tasksWrapper: tasks,
@@ -26,8 +28,10 @@ export const UIObject = {
 
 export const openModal = () => {
     UIObject.addTaskModal.style.display = "block";
-    const newD = new Date();
-    UIObject.date.innerHTML = newD.toDateString();
+    const newDay = { weekday: "long" };
+
+    UIObject.date.innerHTML =
+        new Intl.DateTimeFormat("en-US", newDay).format(new Date()) + "!";
 };
 
 //

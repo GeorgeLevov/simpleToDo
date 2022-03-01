@@ -6,6 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Simple ToDo App" />
 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Monoton&family=Yeseva+One&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="./res/styles/normalize.css">
 	<link rel="stylesheet" href="./res/styles/main.css">
 
@@ -30,18 +35,25 @@
 
 
 	<div id="task_modal" class="modal-wrapper">
-		<div class="modal-header">
-			<h2>What are your plans for today?</h2>
-		</div>
-
 		<div class="modal-content">
-			<input type="text" id="task_name" placeholder="Task name ..."></input>
-			<div id="date_today"></div>
 
-			<div class="modal-footer">
-				<p>When you're ready, please click on the "Submit" button below.</p>
-				<button id="submit_modal">Submit</button>
+			<div class="modal-title">
+				<h2>It's</h2>
+				<h1 id="date_today"></h1>
+				<h2>What are your plans for today?</h2>
 			</div>
+
+			<a href="#" class="btn exit-button" id="exit_modal">X</a>
+
+			<input type="text" id="task_name" placeholder=". . . . ."></input>
+
+			<!-- <p>When you're ready, please click on the "Submit" button below.</p> -->
+			<div class="modal-footer">
+				<a href="#" class="btn" id="submit_modal">Add Task</a>
+
+			</div>
+
+
 		</div>
 
 	</div>
