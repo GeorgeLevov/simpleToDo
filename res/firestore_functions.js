@@ -5,6 +5,7 @@ import {
     doc,
     setDoc,
     updateDoc,
+    deleteDoc,
 } from "firebase/firestore";
 // import { getAuth, connectAuthEmulator, signInWithCredential } from "firebase/auth";
 import { fireStoreApp } from "./firestore_config";
@@ -18,16 +19,20 @@ const database = getFirestore(fireStoreApp);
 async function getAllUserTasks(db) {
     const user = collection(db, "user_01");
     const tasksSnapshot = await getDocs(user);
-    const tasksObject = tasksSnapshot.docs.map((task) => task.data());
+    const tasksObject = tasksSnapshot.docs.map((task) => {
+        return {
+            id: task.id,
+            data: task.data(),
+        };
+    });
     return tasksObject;
 }
 
 //
 // ADD TASKS TO UI
-const addTasksToUI = (userData) => {
-    const taskArray = userData.map((task, index) => {
-        let taskID = index + 1;
-        return taskUITemplate(task.name, task.complete, taskID);
+const initialAddTasksToUI = (userData) => {
+    const taskArray = userData.map((task) => {
+        return taskUITemplate(task.data.name, task.data.complete, task.id);
     });
 
     for (let i = 0; i < taskArray.length; i++) {
@@ -38,7 +43,7 @@ const addTasksToUI = (userData) => {
 //
 // GET USER TASKS ON PAGE LOAD
 getAllUserTasks(database)
-    .then(addTasksToUI)
+    .then(initialAddTasksToUI)
     .catch((error) => console.log(error));
 
 ////////////////////////////////////////////////////////////////////////////
@@ -47,7 +52,7 @@ getAllUserTasks(database)
 // TASK STATUS UPDATE
 export const DB_updateTaskStatus = async (taskId, taskStatus) => {
     const taskRef = doc(database, "user_01", taskId);
-    await updateDoc(taskRef, { complete: taskStatus }, { merge: true });
+    updateDoc(taskRef, { complete: taskStatus }, { merge: true });
 };
 
 //
@@ -55,4 +60,12 @@ export const DB_updateTaskStatus = async (taskId, taskStatus) => {
 export function DB_AddTask(newTask, taskID) {
     const newDocument = doc(database, "user_01", taskID);
     setDoc(newDocument, newTask);
+}
+
+//
+// REMOVE TASK
+export function DB_RemoveTask(taskID) {
+    const docToBeDeleted = doc(database, "user_01", taskID);
+
+    deleteDoc(docToBeDeleted);
 }

@@ -20,21 +20,30 @@ body {
     /* background-color: hsl(0deg 0% 80%); */
 }
 
+h1 {
+    font-family: "Yeseva One", cursive;
+    font-size: 3rem;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+h2 {
+    font-family: "Yeseva One", cursive;
+    display: inline-block;
+}
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 10vh;
     max-height: 10vh;
-    padding-top: 32px;
     padding-left: 32px;
     padding-right: 32px;
     /* border-bottom: 1px dashed black; */
 }
 
-h1 {
-    margin: 0 auto;
-    display: inline-block;
+header h1 {
     flex: 0 0 50%;
 }
 
@@ -48,7 +57,7 @@ h1 {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
+    padding-top: 200px;
     left: 0;
     top: 0;
     width: 100%;
@@ -61,10 +70,9 @@ h1 {
 .modal-content {
     position: relative;
     isolation: isolate;
-    background-color: gainsboro;
+    background-color: hsl(0, 0%, 85%);
     margin: auto;
 
-    border: 1px solid #888;
     max-width: 80%;
     max-width: 800px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -76,17 +84,13 @@ h1 {
 }
 
 .modal-content h1 {
-    display: inline-block;
     padding-left: 8px;
     font-family: "Monoton", cursive;
     font-weight: 400;
-    font-size: 3rem;
 }
 
 .modal-content h2 {
-    display: inline-block;
     margin: 0 auto;
-    font-family: "Yeseva One", cursive;
     font-weight: bold;
 }
 
@@ -96,7 +100,8 @@ h1 {
 }
 
 .modal-content #task_name {
-    font-family: "Yeseva One", cursive;
+    font-family: "IBM Plex Serif", serif;
+    letter-spacing: 0.25px;
     font-weight: bold;
     line-height: 2;
     width: 92.5%;
@@ -109,8 +114,9 @@ h1 {
 }
 
 .modal-content #task_name::placeholder {
-    font-family: "Yeseva One", cursive;
-    opacity: 0.8;
+    font-family: "IBM Plex Serif", serif;
+    opacity: 1;
+    color: hsl(0deg 0% 40%);
 }
 
 .modal-footer {
@@ -119,10 +125,11 @@ h1 {
 }
 
 .btn {
+    margin: 0 auto;
     padding: 12px 24px;
     font-weight: bold;
     display: inline-block;
-    background-color: hsl(0, 0%, 15%);
+    background-color: hsl(0deg 0% 30%);
     color: hsl(0, 0%, 85%);
     text-decoration: none;
     font-size: 20px;
@@ -130,13 +137,14 @@ h1 {
 
 .btn:hover,
 .btn:focus {
-    /* font-size: 32px; */
+    background-color: hsl(0, 0%, 15%);
 }
 
 .exit-button {
     position: absolute;
     top: 16px;
     right: 32px;
+    background-color: hsl(0, 0%, 15%);
     font-weight: 400;
 }
 
@@ -144,8 +152,10 @@ h1 {
     width: 100%;
     height: 10vh;
     max-height: 10vh;
-    margin: 0 auto;
-    font-size: 2.5rem;
+    text-align: center;
+    font-size: 3rem;
+    color: hsl(180, 25%, 25%);
+    background-color: hsl(0, 0%, 85%);
     cursor: pointer;
 }
 
@@ -166,6 +176,7 @@ h1 {
 #flex_table .task {
     display: flex;
     align-items: stretch;
+    /* justify-content: space-between; */
     gap: 8px;
     width: 100%;
     background: hsl(0, 0%, 100%);
@@ -177,26 +188,36 @@ h1 {
     margin-right: auto;
     word-break: break-word;
     user-select: none;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 #flex_table .task .task-name {
     align-self: center;
 }
 
-#flex_table .task .task-checkmark {
+#flex_table .task .task-box {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
     color: hsl(0, 0%, 100%);
     background: hsl(0 0% 100%);
 
-    padding: 0px 10px;
+    padding: 0px 16px;
     user-select: none;
 }
 
-#flex_table .task .task-checkmark.checked {
-    background: hsl(155deg 55% 55%);
+#flex_table .task .task-status.checked {
+    background-color: hsl(180, 25%, 25%);
+}
+
+#flex_table .task .task-removal {
+    background-color: hsl(0deg 0% 30%);
+    margin-left: auto;
+}
+
+#flex_table .task .task-removal:hover {
+    background: hsl(0, 30%, 30%);
+    margin-left: auto;
 }
 
 @media (min-width: 550px) {

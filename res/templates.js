@@ -1,5 +1,5 @@
 import { Timestamp } from "firebase/firestore";
-import { taskStatusChange } from "./ui_map";
+import { taskStatusChange, deleteTask } from "./ui_map";
 
 //
 // HELPER FUNCTIONS
@@ -7,7 +7,7 @@ import { taskStatusChange } from "./ui_map";
 export const taskElementTemplate = (id) => {
     const taskElement = document.createElement("div");
     taskElement.classList.add("task");
-    taskElement.setAttribute("id", `task_${id}`);
+    taskElement.setAttribute("id", `${id}`);
     return taskElement;
 };
 
@@ -21,7 +21,8 @@ export const taskNameElementTemplate = (input) => {
 export const taskStatusElementTemplate = (status) => {
     const checkElement = document.createElement("div");
     checkElement.innerHTML = "&#10003;";
-    checkElement.classList.add("task-checkmark");
+    checkElement.classList.add("task-box");
+    checkElement.classList.add("task-status");
 
     if (status) {
         checkElement.classList.add("checked");
@@ -30,6 +31,15 @@ export const taskStatusElementTemplate = (status) => {
     }
 
     return checkElement;
+};
+
+export const taskDeleteElementTemplate = () => {
+    const deletionElement = document.createElement("div");
+    deletionElement.innerHTML = "&#10007;";
+    deletionElement.classList.add("task-box");
+    deletionElement.classList.add("task-removal");
+
+    return deletionElement;
 };
 
 export const taskDBTemplate = (taskName) => {
@@ -42,10 +52,11 @@ export const taskDBTemplate = (taskName) => {
 
 //
 //
-export const taskUITemplate = (textInput, status, index) => {
-    const task = taskElementTemplate(index);
+export const taskUITemplate = (textInput, status, taskID) => {
+    const task = taskElementTemplate(taskID);
     const taskStatus = taskStatusElementTemplate(status);
     const taskName = taskNameElementTemplate(textInput);
+    const taskDelete = taskDeleteElementTemplate();
 
     if (status) {
         task.classList.add("completed");
@@ -54,11 +65,17 @@ export const taskUITemplate = (textInput, status, index) => {
     }
 
     // add event listener for the task status element
-    task.addEventListener("click", () => taskStatusChange(taskStatus, task));
+    taskStatus.addEventListener("click", () =>
+        taskStatusChange(taskStatus, task)
+    );
+
+    // add event listener for the task removal element
+    taskDelete.addEventListener("click", () => deleteTask(task));
 
     // append nodes to task
     task.appendChild(taskStatus);
     task.appendChild(taskName);
+    task.appendChild(taskDelete);
 
     return task;
 };
