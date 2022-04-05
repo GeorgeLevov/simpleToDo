@@ -1,1 +1,4 @@
 *node_modules/*
+*extra/*
+database.rules.json
+firestore_config.js
