@@ -1,10 +1,9 @@
-import { arrayRemove } from "firebase/firestore";
 import {
     DB_AddTask,
     DB_updateTaskStatus,
     DB_RemoveTask,
 } from "./firestore_functions";
-import { taskDBTemplate, taskUITemplate } from "./templates";
+import { taskDBTemplate, taskUITemplate, getNextTaskID } from "./templates";
 
 //
 //
@@ -16,7 +15,7 @@ const taskName = document.getElementById("task_name");
 const tasks = document.getElementById("flex_table");
 const dateToday = document.getElementById("date_today");
 
-export const UIObject = {
+export const UIelements = {
     btnAddTask: addTask,
     btnSubmitTask: submitModal,
     btnCloseModal: exitModal,
@@ -27,47 +26,35 @@ export const UIObject = {
 };
 
 //
-//
-const getNextTaskID = () => {
-    let nextIDNumber = 0;
-    const arrayOfTaskIDNumbers = Array.from(UIObject.tasksWrapper.children).map(
-        (task) => {
-            let taskIDString = task.id.toString().replace("task_", "");
-            return parseInt(taskIDString);
-        }
-    );
-    const biggestNumber = Math.max(...arrayOfTaskIDNumbers);
-    return biggestNumber + 1;
-};
-
-//
 // UI FUNCTIONS
 
 export const openModal = () => {
-    UIObject.addTaskModal.style.display = "block";
+    UIelements.addTaskModal.style.display = "block";
     const newDay = { weekday: "long" };
 
-    UIObject.date.innerHTML = new Intl.DateTimeFormat("en-US", newDay).format(
+    UIelements.date.innerHTML = new Intl.DateTimeFormat("en-US", newDay).format(
         new Date()
     );
 };
 
 //
 export const closeModal = () => {
-    UIObject.addTaskModal.style.display = "none";
+    UIelements.addTaskModal.style.display = "none";
 };
 
 //
 //
 export const submitTask = () => {
-    const taskText = UIObject.taskNameInput.value;
-    UIObject.taskNameInput.value = "";
+    const task_name = UIelements.taskNameInput.value;
+    UIelements.taskNameInput.value = "";
     let taskId = `task_${getNextTaskID()}`;
 
-    const newTask = taskDBTemplate(taskText);
+    const newTask = taskDBTemplate(task_name);
     DB_AddTask(newTask, taskId);
 
-    UIObject.tasksWrapper.appendChild(taskUITemplate(taskText, false, taskId));
+    UIelements.tasksWrapper.appendChild(
+        taskUITemplate(task_name, false, taskId)
+    );
 
     closeModal();
 };
@@ -82,6 +69,8 @@ export const deleteTask = (taskElement) => {
     DB_RemoveTask(taskId);
 };
 
+//
+//
 export const taskStatusChange = (statusElement, taskElement) => {
     let taskId = taskElement.id;
     let taskComplete = false;

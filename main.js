@@ -1,7 +1,7 @@
-import { UIObject, openModal, submitTask, closeModal } from "./res/ui_map";
+import { UIelements, openModal, submitTask, closeModal } from "./res/ui_map";
 
-UIObject.btnAddTask.addEventListener("click", openModal);
+UIelements.btnAddTask.addEventListener("click", openModal);
 
-UIObject.btnSubmitTask.addEventListener("click", submitTask);
+UIelements.btnSubmitTask.addEventListener("click", submitTask);
 
-UIObject.btnCloseModal.addEventListener("click", closeModal);
+UIelements.btnCloseModal.addEventListener("click", closeModal);

@@ -1,68 +1,82 @@
 import { Timestamp } from "firebase/firestore";
-import { taskStatusChange, deleteTask } from "./ui_map";
+import { taskStatusChange, deleteTask, UIelements } from "./ui_map";
 
 //
 // HELPER FUNCTIONS
 
-export const taskElementTemplate = (id) => {
-    const taskElement = document.createElement("div");
-    taskElement.classList.add("task");
-    taskElement.setAttribute("id", `${id}`);
-    return taskElement;
+export const getNextTaskID = () => {
+    let nextIDNumber = 0;
+    const arrayOfTaskIDNumbers = Array.from(
+        UIelements.tasksWrapper.children
+    ).map((task) => {
+        let taskIDString = task.id.toString().replace("task_", "");
+        return parseInt(taskIDString);
+    });
+    const biggestNumber = Math.max(...arrayOfTaskIDNumbers);
+    return biggestNumber + 1;
 };
 
-export const taskNameElementTemplate = (input) => {
-    const textElement = document.createElement("div");
-    textElement.classList.add("task-name");
-    textElement.textContent = input.toString();
-    return textElement;
+export const createElement = (type, options = {}) => {
+    const element = document.createElement(type);
+
+    Object.entries(options).forEach(([key, value]) => {
+        if (key === "class") {
+            Array.from(value.split(" "), (class_name) => {
+                element.classList.add(class_name);
+            });
+        }
+
+        if (key === "dataset") {
+            Object.entries(value).forEach(([dataKey, dataValue]) => {
+                element.dataset[dataKey] = dataValue;
+            });
+            return;
+        }
+
+        if (key === "text") {
+            element.textContent = value;
+            return;
+        }
+
+        element.setAttribute(key, value);
+    });
+
+    return element;
 };
 
-export const taskStatusElementTemplate = (status) => {
-    const checkElement = document.createElement("div");
-    checkElement.innerHTML = "&#10003;";
-    checkElement.classList.add("task-box");
-    checkElement.classList.add("task-status");
-
-    if (status) {
-        checkElement.classList.add("checked");
-    } else {
-        checkElement.classList.remove("checked");
-    }
-
-    return checkElement;
-};
-
-export const taskDeleteElementTemplate = () => {
-    const deletionElement = document.createElement("div");
-    deletionElement.innerHTML = "&#10007;";
-    deletionElement.classList.add("task-box");
-    deletionElement.classList.add("task-removal");
-
-    return deletionElement;
-};
-
-export const taskDBTemplate = (taskName) => {
+export const taskDBTemplate = (task_name) => {
     return {
-        name: taskName,
-        date: Timestamp.fromDate(new Date()),
-        complete: false,
+        task_name: task_name,
+        task_time_created: Timestamp.fromDate(new Date()),
+        task_status: false,
     };
 };
 
 //
 //
-export const taskUITemplate = (textInput, status, taskID) => {
-    const task = taskElementTemplate(taskID);
-    const taskStatus = taskStatusElementTemplate(status);
-    const taskName = taskNameElementTemplate(textInput);
-    const taskDelete = taskDeleteElementTemplate();
+export const taskUITemplate = (task_name, task_status, task_id) => {
+    const task = createElement("div", { class: "task", id: `${task_id}` });
+    const taskStatus = createElement("div", {
+        class: "task-box task-status",
+        text: "✓",
+    });
 
-    if (status) {
+    if (task_status) {
+        taskStatus.classList.add("checked");
         task.classList.add("completed");
     } else {
         task.classList.add("in-progress");
     }
+
+    const taskName = createElement("div", {
+        class: "task-name",
+        text: task_name.toString(),
+    });
+
+    const taskDelete = createElement("div", {
+        class: "task-box task-removal",
+        text: "✗",
+    });
 
     // add event listener for the task status element
     taskStatus.addEventListener("click", () =>
@@ -73,9 +87,7 @@ export const taskUITemplate = (textInput, status, taskID) => {
     taskDelete.addEventListener("click", () => deleteTask(task));
 
     // append nodes to task
-    task.appendChild(taskStatus);
-    task.appendChild(taskName);
-    task.appendChild(taskDelete);
+    task.append(taskStatus, taskName, taskDelete);
 
     return task;
 };
